@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    int estudiantes, dias;
+    float costo_hospedaje_dia;
+    bool alimentacion, coordinador;
+
+    float transporte, hospedaje, comida=0;
+    float descuento=0, total, total_est;
+
+    cout<<"Numero de estudiantes: ";
+    cin>>estudiantes;
+
+    cout<<"Numero de dias: ";
+    cin>>dias;
+
+    cout<<"Costo hospedaje por dia: ";
+    cin>>costo_hospedaje_dia;
+
+    cout<<"Incluye alimentacion? (1=Si 0=No): ";
+    cin>>alimentacion;
+
+    cout<<"Hay coordinador? (1=Si 0=No): ";
+    cin>>coordinador;
+
+    if(estudiantes>20)
+        transporte=estudiantes*20;
+    else
+        transporte=estudiantes*30;
+
+    if(coordinador)
+        transporte-=30;
+
+    hospedaje=estudiantes*dias*costo_hospedaje_dia;
+
+    if(dias>3)
+        hospedaje*=0.9;
+
+    if(alimentacion)
+        comida=estudiantes*dias*10;
+
+    total=transporte+hospedaje+comida;
+
+    if(total>1000)
+        descuento=total*0.05;
+
+    total-=descuento;
+
+    total_est=total/estudiantes;
+
+    cout<<"\nCosto transporte: "<<transporte;
+    cout<<"\nCosto hospedaje: "<<hospedaje;
+    cout<<"\nCosto alimentacion: "<<comida;
+    cout<<"\nDescuento: "<<descuento;
+    cout<<"\nTotal general: "<<total;
+    cout<<"\nTotal por estudiante: "<<total_est;
+
+    if(total_est>200)
+        cout<<"\nViaje no recomendable";
+    else
+        cout<<"\nViaje recomendable";
+
+    return 0;
+}
