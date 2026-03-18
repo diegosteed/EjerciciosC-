@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    int hojas;
+    int tipo_impresion, tipo_usuario, horario, anillado;
+
+    float precio_hoja, subtotal, descuento=0, recargo=0, valor_anillado=0, total;
+
+    cout<<"Numero de hojas: ";
+    cin>>hojas;
+
+    cout<<"Tipo impresion (1=BN 2=Color): ";
+    cin>>tipo_impresion;
+
+    cout<<"Tipo usuario (1=Estudiante 2=Docente): ";
+    cin>>tipo_usuario;
+
+    cout<<"Horario (1=Normal 2=Nocturno): ";
+    cin>>horario;
+
+    cout<<"Anillado? (1=Si 0=No): ";
+    cin>>anillado;
+
+    if(hojas<=20)
+        precio_hoja=0.05;
+    else if(hojas<=100)
+        precio_hoja=0.04;
+    else
+        precio_hoja=0.03;
+
+    if(tipo_impresion==2)
+        precio_hoja=precio_hoja*2;
+
+    subtotal=hojas*precio_hoja;
+
+    if(tipo_usuario==2)
+        descuento=subtotal*0.05;
+
+    if(tipo_usuario==1 && hojas>50){
+        if(subtotal*0.08>descuento)
+            descuento=subtotal*0.08;
+    }
+
+    if(horario==2)
+        recargo=subtotal*0.10;
+
+    if(anillado==1){
+        valor_anillado=2;
+        if(hojas>100)
+            valor_anillado=valor_anillado*0.8;
+    }
+
+    total=subtotal-descuento+recargo+valor_anillado;
+
+    cout<<"\nSubtotal impresion: "<<subtotal;
+    cout<<"\nDescuento aplicado: "<<descuento;
+    cout<<"\nRecargo: "<<recargo;
+    cout<<"\nValor anillado: "<<valor_anillado;
+    cout<<"\nTotal a pagar: "<<total;
+
+    return 0;
+}
