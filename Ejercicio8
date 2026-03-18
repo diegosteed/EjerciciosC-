@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    float n1,n2,n3,asistencia,promedio;
+    bool proyecto, plagio;
+
+    string estado=" ", obs_disciplina="Sin problemas", obs_rendimiento="Normal";
+
+    cout<<"Nota 1: ";
+    cin>>n1;
+
+    cout<<"Nota 2: ";
+    cin>>n2;
+
+    cout<<"Nota 3: ";
+    cin>>n3;
+
+    cout<<"Asistencia (%): ";
+    cin>>asistencia;
+
+    cout<<"Entrego proyecto? (1=Si 0=No): ";
+    cin>>proyecto;
+
+    cout<<"Cometio plagio? (1=Si 0=No): ";
+    cin>>plagio;
+
+    promedio=(n1+n2+n3)/3;
+
+    if(plagio){
+        estado="Reprobado";
+        obs_disciplina="Reprobado por plagio";
+    }
+    else if(asistencia<70){
+        estado="Reprobado";
+    }
+    else if(promedio>=7 && proyecto){
+        estado="Aprobado";
+    }
+    else if(promedio>=5){
+        estado="Recuperacion";
+    }
+    else{
+        estado="Reprobado";
+    }
+
+    if(n1>=9 && n2>=9 && n3>=9 && asistencia>=95)
+        estado="Aprobado con felicitacion";
+
+    if((n1==10 || n2==10 || n3==10) &&
+       ((n1<4 && n2<4) || (n1<4 && n3<4) || (n2<4 && n3<4)))
+       obs_rendimiento="Rendimiento irregular";
+
+    cout<<"\nPromedio: "<<promedio;
+    cout<<"\nEstado academico: "<<estado;
+    cout<<"\nObservacion disciplinaria: "<<obs_disciplina;
+    cout<<"\nObservacion rendimiento: "<<obs_rendimiento;
+
+    return 0;
+}
