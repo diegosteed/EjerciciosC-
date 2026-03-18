@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    float promedio, asistencia;
+    int materias_perdidas;
+    bool proyectos, ingresos_bajos;
+
+    string tipo_ayuda, razon_academica, razon_economica, observacion;
+
+    cout<<"Ingrese promedio: ";
+    cin>>promedio;
+
+    cout<<"Ingrese materias perdidas: ";
+    cin>>materias_perdidas;
+
+    cout<<"Ingrese asistencia (%): ";
+    cin>>asistencia;
+
+    cout<<"Participa en proyectos? (1=Si 0=No): ";
+    cin>>proyectos;
+
+    cout<<"Ingresos familiares bajos? (1=Si 0=No): ";
+    cin>>ingresos_bajos;
+
+    if(asistencia < 80){
+        tipo_ayuda="Sin beneficio";
+        razon_academica="Asistencia menor al minimo";
+        razon_economica="No aplica";
+    }
+    else if(promedio < 7){
+        tipo_ayuda="Sin beneficio";
+        razon_academica="Promedio insuficiente";
+        razon_economica="No aplica";
+    }
+    else if(promedio>=9 && asistencia>=90 && materias_perdidas==0){
+        tipo_ayuda="Beca completa";
+        razon_academica="Excelente rendimiento";
+    }
+    else if(promedio>=8 && promedio<9 && asistencia>=85){
+        tipo_ayuda="Beca parcial";
+        razon_academica="Buen rendimiento";
+    }
+    else{
+        tipo_ayuda="Ayuda de materiales";
+        razon_academica="Rendimiento aceptable";
+    }
+
+    if(materias_perdidas>1 && tipo_ayuda=="Beca completa"){
+        tipo_ayuda="Beca parcial";
+    }
+
+    if(proyectos && ingresos_bajos){
+        razon_economica="Apoyo por participacion y bajos ingresos";
+
+        if(tipo_ayuda=="Ayuda de materiales"){
+            tipo_ayuda="Beca parcial";
+        }
+    }
+    else{
+        razon_economica="Sin condicion economica especial";
+    }
+
+    observacion="Evaluacion realizada segun reglamento";
+
+    cout<<"\nTipo de ayuda: "<<tipo_ayuda;
+    cout<<"\nRazon academica: "<<razon_academica;
+    cout<<"\nRazon economica: "<<razon_economica;
+    cout<<"\nObservacion final: "<<observacion;
+
+    return 0;
+}
