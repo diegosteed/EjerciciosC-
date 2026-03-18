@@ -1,0 +1,65 @@
+Ejercicio 1: 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int minutos_tarde, faltas;
+    bool credencial, pertenece_curso;
+    string estado, motivo, prioridad;
+
+    cout<<"Ingrese minutos de retraso: ";
+    cin>>minutos_tarde;
+
+    cout<<"Ingrese numero de faltas acumuladas: ";
+    cin>>faltas;
+
+    cout<<"Trae credencial? (1=Si 0=No): ";
+    cin>>credencial;
+
+    cout<<"Pertenece al curso del horario actual? (1=Si 0=No): ";
+    cin>>pertenece_curso;
+
+    if(!credencial){
+        estado="No puede ingresar";
+        motivo="No trae credencial";
+        prioridad="Alta";
+    }
+    else if(!pertenece_curso){
+        estado="No puede ingresar";
+        motivo="No pertenece al curso";
+        prioridad="Alta";
+    }
+    else if(faltas>=5){
+        estado="No puede ingresar";
+        motivo="Demasiadas faltas";
+        prioridad="Alta";
+    }
+    else if(minutos_tarde>10){
+        estado="No puede ingresar";
+        motivo="Llegó demasiado tarde";
+        prioridad="Media";
+    }
+    else if(minutos_tarde>0){
+        estado="Ingresa con advertencia";
+        motivo="Llegó tarde";
+        prioridad="Media";
+    }
+    else if(faltas>=3){
+        estado="Ingresa con advertencia";
+        motivo="Varias faltas acumuladas";
+        prioridad="Media";
+    }
+    else{
+        estado="Ingresa sin problema";
+        motivo="Cumple todas las reglas";
+        prioridad="Baja";
+    }
+
+    cout<<"\nEstado final: "<<estado;
+    cout<<"\nMotivo: "<<motivo;
+    cout<<"\nPrioridad: "<<prioridad;
+
+    return 0;
+}
